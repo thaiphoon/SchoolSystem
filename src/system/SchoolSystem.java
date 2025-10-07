@@ -1,6 +1,50 @@
 package system;
 
+import system.data.course.Course;
+import system.data.grade.Grade;
+import system.data.grade.LetterGrade;
+import system.data.person.Student;
+import system.data.person.Teacher;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class SchoolSystem {
+
+    List<Teacher> teacherList;
+    List<Student> studentList;
+    List<Course> coursesList;
+
+
+    public SchoolSystem(){
+        teacherList = new ArrayList<Teacher>();
+        studentList = new ArrayList<Student>();
+
+        teacherList.add(new Teacher(1, "Ibrahim Hazem"));
+        teacherList.add(new Teacher(2, "Bill Palmstedt"));
+        studentList.add(new Student(3, "Anthony Rizk Gustavsson"));
+        studentList.add(new Student(4, "Joakim Tubring"));
+        studentList.add(new Student(5, "Niklas Holmström"));
+        studentList.add(new Student(6, "Begaiym Kalilova"));
+        studentList.add(new Student(7, "Yuka Tatsumi"));
+
+        coursesList.add(new Course(101, "Java 101"));
+        coursesList.add(new Course(102, "Math 101"));
+        coursesList.add(new Course(103, "Geography 101"));
+        coursesList.add(new Course(104, "History 101"));
+        coursesList.add(new Course(105, "Woodshop 101"));
+
+        studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+
+
+
+
+
+
+    }
+
+
+
 
 
 }
