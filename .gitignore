@@ -6,6 +6,7 @@ out/
 .idea/*
 *.iml
 *.xml
+src/res/*
 
 # Compiled class file
 *.class
