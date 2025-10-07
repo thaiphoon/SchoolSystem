@@ -3,9 +3,14 @@ package system;
 import system.data.course.Course;
 import system.data.grade.Grade;
 import system.data.grade.LetterGrade;
+import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.menu.Menu;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +24,11 @@ public class SchoolSystem {
     public SchoolSystem(){
         teacherList = new ArrayList<Teacher>();
         studentList = new ArrayList<Student>();
+        coursesList = new ArrayList<Course>();
 
         teacherList.add(new Teacher(1, "Ibrahim Hazem"));
         teacherList.add(new Teacher(2, "Bill Palmstedt"));
+
         studentList.add(new Student(3, "Anthony Rizk Gustavsson"));
         studentList.add(new Student(4, "Joakim Tubring"));
         studentList.add(new Student(5, "Niklas Holmström"));
@@ -34,13 +41,28 @@ public class SchoolSystem {
         coursesList.add(new Course(104, "History 101"));
         coursesList.add(new Course(105, "Woodshop 101"));
 
+        teacherList.get(0).addCourse(coursesList.get(1));
+        teacherList.get(1).addCourse(coursesList.get(0));
+
         studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        run();
+    }
 
+    private void run(){
 
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Menu menu = new Menu();
 
+        while(true){
+            try{
+                menu.menuChoices(br, menu.menuText(br, teacherList, studentList, coursesList),
+                        teacherList, studentList, coursesList);
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
 
-
-
+        }
     }
 
 
