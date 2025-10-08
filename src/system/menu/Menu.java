@@ -56,9 +56,6 @@ break;
             case 4:
                 new MStudent().enrollCourse(coursesList, teacherList, (Student) currentPerson, br);
                 break;
-            case 0:
-                br.close();
-                System.exit(0);
             case 11:
                 tMenu.menu(br, teacher);
                 break;
