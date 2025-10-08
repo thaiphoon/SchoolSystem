@@ -22,7 +22,8 @@ public class Menu {
         Person currentPerson = studentList.get(0);
         System.out.println("======School System======");
         System.out.println("0: Exit System");
-        System.out.println("1: Test Input");
+        System.out.println("1: Show All Available Courses");
+        System.out.println("2: Show My Enrolled Courses");
         System.out.println("11: login as a teacher");
         return new SingleIntegerInput().handleInput(br);
     }
@@ -33,13 +34,15 @@ public class Menu {
         MTeacher tMenu = new MTeacher();
         Teacher teacher = teacherList.get(0);
         switch (choice) {
-
             case 0:
                 br.close();
                 System.exit(0);
             case 1:
                 new MStudent().showAvailableCourses(coursesList, teacherList);
                 break;
+            case 2:
+                new MStudent().showEnrolledCourses(coursesList, (Student) currentPerson);
+break;
             case 11:
                 tMenu.menu(br, teacher, studentList);
                 break;

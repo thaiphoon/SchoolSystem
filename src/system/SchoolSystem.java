@@ -57,6 +57,7 @@ public class SchoolSystem {
         fileSystem.addStudents(studentList);
         fileSystem.addCourses(coursesList);
         fileSystem.addTeachers(teacherList);
+        studentList.get(0).addGrade(new LetterGrade(1, 102, ""));
     }
 
     private void run(){
