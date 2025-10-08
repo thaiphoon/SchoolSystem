@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.PatternSyntaxException;
 
 public class SchoolSystem {
 
     List<Teacher> teacherList;
     List<Student> studentList;
     List<Course> coursesList;
-
 
     public SchoolSystem(){
         teacherList = new ArrayList<Teacher>();
@@ -59,15 +59,14 @@ public class SchoolSystem {
                 menu.menuChoices(br, menu.menuText(br, teacherList, studentList, coursesList),
                         teacherList, studentList, coursesList);
             }
-            catch (IOException e){
+            catch (PatternSyntaxException e){
+                System.out.println("Regex incomplete");
                 e.printStackTrace();
             }
-
+            catch (IOException e){
+                System.out.println("Stream closed, check that bufferedreader is active");
+                e.printStackTrace();
+            }
         }
     }
-
-
-
-
-
 }
