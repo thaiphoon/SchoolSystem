@@ -19,9 +19,9 @@ public class MStudent implements IStudent{
                 }
             }
             if(t != null){
-                System.out.println("Course id: " + course.getId() + ", name: " + course.getName() + ", teacher: " + t.getName());
+                System.out.println("Course id: " + course.getId() + "  Name: " + course.getName() + "  Teacher: " + t.getName());
             } else {
-                System.out.println("Course id: " + course.getId() + ", name: " + course.getName());
+                System.out.println("Course id: " + course.getId() + "  Name: " + course.getName());
 
             }
         });
@@ -37,10 +37,24 @@ public class MStudent implements IStudent{
             if (grade.getValue().isEmpty()){
                 for(Course course: courses){
                     if (course.getId()== grade.getCourseId()){
-                        System.out.printf("(%d): %s  %n", course.getId(), course.getName());
+                        System.out.printf("Course id: %d  Name: %s %n", course.getId(), course.getName());
                     }
                 }
+            }
+        });
+    }
+
+    @Override
+    public void showCompletedCourses(List<Course> courses, Student student) {
+        System.out.println("=== Your Completed Courses ===");
+        student.getGrades().forEach(grade -> {
+            if (!grade.getValue().isEmpty()){
+                for(Course course: courses){
+                    if (course.getId()== grade.getCourseId()){
+                        System.out.printf("Course id: %d  Name: %s  Grade: %s %n", course.getId(), course.getName(), grade.getValue());
+                    }
                 }
-            });
+            }
+        });
     }
 }
