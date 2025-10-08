@@ -6,6 +6,7 @@ import system.data.grade.LetterGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.fileSystem.JsonUtil;
 import system.menu.Menu;
 
 import java.io.BufferedReader;
@@ -44,8 +45,10 @@ public class SchoolSystem {
         teacherList.get(0).addCourse(coursesList.get(1));
         teacherList.get(1).addCourse(coursesList.get(0));
 
-        studentList.get(0).addGrade(new LetterGrade(1, 101, LetterGrade.Rank.A));
-        run();
+        studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        JsonUtil jsonUtil = new JsonUtil();
+        jsonUtil.writeToJson(teacherList, studentList, coursesList, this);
+        jsonUtil.readFromFile("test.dbj");
     }
 
     private void run(){
