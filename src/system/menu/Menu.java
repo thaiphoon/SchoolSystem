@@ -21,8 +21,6 @@ public class Menu {
         System.out.println("0: Exit System");
         System.out.println("1: Show All Available Courses");
         System.out.println("2: Show My Enrolled Courses");
-        return Integer.parseInt(br.readLine());
-        System.out.println("1: Test Input");
         return new SingleIntegerInput().handleInput(br);
     }
 
