@@ -4,6 +4,7 @@ import system.data.course.Course;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.menu.student.MStudent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +25,9 @@ public class Menu {
         Person currentPerson = studentList.get(0);
         switch (choice) {
 
+            case 1:
+                new MStudent().showAvailableCourses(coursesList, teacherList);
+                break;
             case 0:
                 br.close();
                 System.exit(0);
