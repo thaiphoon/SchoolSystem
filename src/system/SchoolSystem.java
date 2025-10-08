@@ -45,6 +45,7 @@ public class SchoolSystem {
         teacherList.get(1).addCourse(coursesList.get(0));
 
         studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        studentList.get(0).addGrade(new LetterGrade(1, 102, ""));
         run();
     }
 

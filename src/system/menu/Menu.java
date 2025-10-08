@@ -17,6 +17,8 @@ public class Menu {
         Person currentPerson = studentList.get(0);
         System.out.println("======School System======");
         System.out.println("0: Exit System");
+        System.out.println("1: Show All Available Courses");
+        System.out.println("2: Show My Enrolled Courses");
         return Integer.parseInt(br.readLine());
     }
 
@@ -27,6 +29,9 @@ public class Menu {
 
             case 1:
                 new MStudent().showAvailableCourses(coursesList, teacherList);
+                break;
+            case 2:
+                new MStudent().showEnrolledCourses(coursesList, (Student) currentPerson);
                 break;
             case 0:
                 br.close();

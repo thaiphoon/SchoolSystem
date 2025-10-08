@@ -16,4 +16,7 @@ public class Student extends Person{
         grades.add(grade);
     }
 
+    public List<Grade> getGrades() {
+        return grades;
+    }
 }
