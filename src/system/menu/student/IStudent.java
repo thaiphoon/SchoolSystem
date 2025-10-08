@@ -9,4 +9,5 @@ import java.util.List;
 public interface IStudent {
     void showAvailableCourses(List<Course> courses, List<Teacher> teachers);
     void showEnrolledCourses(List<Course> courses, Student student);
+    void showCompletedCourses(List<Course> courses, Student student);
 }
