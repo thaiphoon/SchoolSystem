@@ -4,8 +4,12 @@ import system.data.course.Course;
 import system.data.grade.PendingGrade;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.inputHandling.SingleIntegerInput;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class MStudent implements IStudent{
 
@@ -58,12 +62,42 @@ public class MStudent implements IStudent{
     }
 
     @Override
-    public void enrollCourse(List<Course> courses, List<Teacher> teachers, Student student) {
+    public void enrollCourse(List<Course> courses, List<Teacher> teachers, Student student, BufferedReader br) throws IOException {
+        Course foundCourse = null;
 
+        while (foundCourse==null){
+            System.out.print("Enter id of the course you want to enroll in: ");
+            int id = new SingleIntegerInput().handleInput(br);
+            for(Course course: courses){
+                if (course.getId() == id){
+                    foundCourse = course;
+                    break;
+                }
+            }
+            if(foundCourse==null){
+                System.out.println("Enter 0 to skip enrollment or 1 to try again");
+                int choice = new SingleIntegerInput().handleInput(br);
+                if (choice == 0){
+                    return;
+                }
+
+            }
+
+        }
+        if(foundCourse != null) {
+            Course finalFoundCourse = foundCourse;
+            for (int i = 0; i < student.getGrades().size(); i++) {
+                if(student.getGrades().get(i).getCourseId() == finalFoundCourse.getId()){
+                    System.out.println("You are already enrolled in the course, Choose another course.");
+                    return;
+                }
+            }
+            student.addGrade(new PendingGrade(1, finalFoundCourse.getId(), ""));
+        }
     }
 
     @Override
-    public void disEnrollCourse(List<Course> courses, List<Teacher> teachers, Student student) {
+    public void disEnrollCourse(List<Course> courses, List<Teacher> teachers, Student student, BufferedReader br) {
 
     }
 }
