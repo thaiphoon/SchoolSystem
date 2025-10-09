@@ -6,6 +6,7 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import system.data.course.Course;
 import system.data.grade.Grade;
 import system.data.grade.LetterGrade;
+import system.data.grade.PendingGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
@@ -90,6 +91,10 @@ public class JsonUtil {
                 .of(Grade.class, "type")
                 .registerSubtype(LetterGrade.class, "lettergrade");
 
+        RuntimeTypeAdapterFactory<Grade> pendingGradeAdapter = RuntimeTypeAdapterFactory
+                .of(Grade.class, "type")
+                .registerSubtype(PendingGrade.class, "pendinggrade");
+
         RuntimeTypeAdapterFactory<Person> studentAdapter = RuntimeTypeAdapterFactory
                 .of(Person.class, "type")
                 .registerSubtype(Student.class, "student")
@@ -97,6 +102,7 @@ public class JsonUtil {
 
         gson = new GsonBuilder()
                 .registerTypeAdapterFactory(gradeAdapter)
+                .registerTypeAdapterFactory(pendingGradeAdapter)
                 .registerTypeAdapterFactory(studentAdapter)
                 .setPrettyPrinting()
                 .create();
