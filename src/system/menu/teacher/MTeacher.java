@@ -2,15 +2,14 @@ package system.menu.teacher;
 
 import com.sun.jdi.connect.Connector;
 import system.data.course.Course;
+import system.data.grade.Grade;
 import system.data.grade.LetterGrade;
 import system.data.person.Student;
 import system.data.person.Teacher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class MTeacher {
 
@@ -18,7 +17,7 @@ public MTeacher(){
 
 }
 
-public void menu(BufferedReader br, Teacher teacher){
+public void menu(BufferedReader br, Teacher teacher, List<Student> students){
     System.out.println("Options");
     System.out.println("1. view courses");
     System.out.println("2. select student");
@@ -36,9 +35,32 @@ public void menu(BufferedReader br, Teacher teacher){
             }
             break;
         case 2:
-            // all students in all clsses, no duplicates
-            List<Student> uniqueStudents = new TreeSet<Student>(teacher.getCourseList().stream()
-                    .flatMap(c -> c.getStudents().stream()).toList()).stream().toList();
+        //     all students in all clsses, no duplicates
+            HashMap<Integer, ArrayList<Student>> teachersStudents = new HashMap<>();
+            for(int k = 0; k < teacher.getCourseList().size(); k++){
+                teachersStudents.put(teacher.getCourseList().get(k).getId(), new ArrayList<>());
+                for(int l = 0; l < students.size(); l++){
+                    int finalK = k;
+                    if(students.get(l).getGrades().stream().filter(grade -> grade.getCourseId()
+                    == teacher.getCourseList().get(finalK).getId()).toList().size() > 0){
+                        teachersStudents.get(teacher.getCourseList().get(k).getId()).add(students.get(l));
+                    }
+                }
+            }
+
+            List<Student> uniqueStudents = new ArrayList<>();
+
+            for(int h = 0; h < teachersStudents.size(); h++){
+                if(teachersStudents.get(teachersStudents.keySet().toArray()[h]).isEmpty()){
+                    break;
+                }
+                for(int j = 0; j < teachersStudents.get(teachersStudents.keySet().toArray()[h]).size();
+                j++){
+                    if(!uniqueStudents.contains(teachersStudents.get(teachersStudents.keySet().toArray()[h]))){
+                        uniqueStudents.add(teachersStudents.get(teachersStudents.keySet().toArray()[h]).get(j));
+                    }
+                }
+            }
 
             int nr_2 = 1;
             for(Student st : uniqueStudents){
@@ -50,6 +72,7 @@ public void menu(BufferedReader br, Teacher teacher){
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            System.out.println(uniqueStudents.size());
             Student selectedStudent = uniqueStudents.get(i2 - 1);
 
             System.out.println("Options:");

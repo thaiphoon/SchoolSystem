@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.PatternSyntaxException;
 
+import static system.data.grade.LetterGrade.Rank.A;
+
 public class SchoolSystem {
 
     List<Teacher> teacherList;
@@ -53,8 +55,9 @@ public class SchoolSystem {
         teacherList.get(1).addCourse(coursesList.get(1));
         teacherList.get(1).addCourse(coursesList.get(2));
 
-        studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
-        studentList.get(1).addGrade(new LetterGrade(1, 102, "A"));
+        studentList.get(0).addGrade(new LetterGrade(1, 101, A));
+        studentList.get(1).addGrade(new LetterGrade(1, 102, A));
+        studentList.get(2).addGrade(new LetterGrade(1, 102, A));
         fileSystem.addStudents(studentList);
         fileSystem.addCourses(coursesList);
         fileSystem.addTeachers(teacherList);

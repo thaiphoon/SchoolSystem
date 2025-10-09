@@ -31,7 +31,7 @@ public class Menu {
 
     public void menuChoices(BufferedReader br, int choice, List<Teacher> teacherList, List<Student> studentList,
                             List<Course> coursesList) throws IOException, PatternSyntaxException {
-        Person currentPerson = studentList.get(0);
+        Person currentPerson = studentList.get(1);
         MTeacher tMenu = new MTeacher();
         Teacher teacher = teacherList.get(0);
         switch (choice) {
@@ -52,7 +52,7 @@ public class Menu {
                 br.close();
                 System.exit(0);
             case 11:
-                tMenu.menu(br, teacher);
+                tMenu.menu(br, teacher, studentList);
                 break;
         }
     }

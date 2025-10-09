@@ -1,6 +1,7 @@
 package system.menu.student;
 
 import system.data.course.Course;
+import system.data.grade.LetterGrade;
 import system.data.grade.PendingGrade;
 import system.data.person.Student;
 import system.data.person.Teacher;
@@ -54,7 +55,8 @@ public class MStudent implements IStudent{
             if (!(grade instanceof PendingGrade)){
                 for(Course course: courses){
                     if (course.getId()== grade.getCourseId()){
-                        System.out.printf("Course id: %d  Name: %s  Grade: %s %n", course.getId(), course.getName(), grade.getValue());
+                        System.out.printf("Course id: %d  Name: %s  Grade: %s %n", course.getId(), course.getName(),
+                                ((LetterGrade) grade).getRank());
                     }
                 }
             }
@@ -92,7 +94,7 @@ public class MStudent implements IStudent{
                     return;
                 }
             }
-            student.addGrade(new PendingGrade(1, finalFoundCourse.getId(), ""));
+            student.addGrade(new PendingGrade(1, finalFoundCourse.getId()));
         }
     }
 

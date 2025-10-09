@@ -10,7 +10,8 @@ public class LetterGrade extends Grade{
         this.rank = rank;
     }
 
-    public LetterGrade(Rank rank) {
+    public LetterGrade(Rank rank, int gradeID, int courseId) {
+        super(gradeID, courseId);
         this.rank = rank;
     }
 
