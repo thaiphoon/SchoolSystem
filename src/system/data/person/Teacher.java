@@ -21,5 +21,4 @@ public class Teacher extends Person{
 
     public List<Course> getCourseList(){ return this.courseList; }
 
-
 }

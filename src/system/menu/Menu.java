@@ -6,6 +6,7 @@ import system.data.person.Student;
 import system.data.person.Teacher;
 import system.inputHandling.SingleIntegerInput;
 import system.menu.student.MStudent;
+import system.menu.teacher.MTeacher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,12 +24,15 @@ public class Menu {
         System.out.println("2: Show My Enrolled Courses");
         System.out.println("3: Show My Completed Courses");
         System.out.println("4: Enroll in a course");
+        System.out.println("11: login as a teacher");
         return new SingleIntegerInput().handleInput(br);
     }
 
     public void menuChoices(BufferedReader br, int choice, List<Teacher> teacherList, List<Student> studentList,
                             List<Course> coursesList) throws IOException, PatternSyntaxException {
         Person currentPerson = studentList.get(0);
+        MTeacher tMenu = new MTeacher();
+        Teacher teacher = teacherList.get(0);
         switch (choice) {
 
             case 1:
@@ -46,6 +50,9 @@ public class Menu {
             case 0:
                 br.close();
                 System.exit(0);
+            case 11:
+                tMenu.menu(br, teacher);
+                break;
         }
     }
 }
