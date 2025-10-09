@@ -43,12 +43,19 @@ public class SchoolSystem {
         coursesList.add(new Course(105, "Woodshop 101"));
 
         teacherList.get(0).addCourse(coursesList.get(1));
+        teacherList.get(0).addCourse(coursesList.get(2));
+        teacherList.get(0).addCourse(coursesList.get(3));
         teacherList.get(1).addCourse(coursesList.get(0));
+        teacherList.get(1).addCourse(coursesList.get(1));
+        teacherList.get(1).addCourse(coursesList.get(2));
 
         studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        studentList.get(1).addGrade(new LetterGrade(1, 102, "A"));
+
         JsonUtil jsonUtil = new JsonUtil();
         jsonUtil.writeToJson(teacherList, studentList, coursesList, this);
-        jsonUtil.readFromFile("test.dbj");
+        String[] files = new String[]{"file/student.json", "file/teacher.json", "file/course.json"};
+        jsonUtil.readFromFile(files);
     }
 
     private void run(){

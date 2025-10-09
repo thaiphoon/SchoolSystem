@@ -11,8 +11,8 @@ public class Teacher extends Person{
 
     public Teacher(int personId, String name){
         super(personId, name);
+        this.type = "teacher";
         courseList = new ArrayList<>();
-
     }
 
     public void addCourse(Course course){

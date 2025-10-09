@@ -12,6 +12,7 @@ public class Student extends Person {
 
     public Student(int personId, String name) {
         super(personId, name);
+        this.type = "student";
     }
 
     public void addGrade(Grade grade) {
