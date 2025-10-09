@@ -27,8 +27,6 @@ public class MStudent implements IStudent{
             }
         });
 
-
-
     }
 
     @Override
@@ -57,5 +55,15 @@ public class MStudent implements IStudent{
                 }
             }
         });
+    }
+
+    @Override
+    public void enrollCourse(List<Course> courses, List<Teacher> teachers, Student student) {
+
+    }
+
+    @Override
+    public void disEnrollCourse(List<Course> courses, List<Teacher> teachers, Student student) {
+
     }
 }
