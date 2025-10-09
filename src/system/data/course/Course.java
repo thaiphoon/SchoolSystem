@@ -35,4 +35,24 @@ public class Course {
     public void addStudents(List<Student> groupOfStudents){
         students.addAll(groupOfStudents);
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Student> getStudents(){
+        return students;
+    }
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
+
+    public void addStudents(List<Student> groupOfStudents){
+        students.addAll(groupOfStudents);
+    }
 }
