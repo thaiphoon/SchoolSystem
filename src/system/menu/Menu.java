@@ -6,6 +6,7 @@ import system.data.person.Student;
 import system.data.person.Teacher;
 import system.menu.teacher.MTeacher;
 import system.inputHandling.SingleIntegerInput;
+import system.menu.teacher.MTeacher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class Menu {
         System.out.println("======School System======");
         System.out.println("0: Exit System");
         System.out.println("1: Test Input");
-        System.out.println("111: login as a teacher");
+        System.out.println("11: login as a teacher");
         return new SingleIntegerInput().handleInput(br);
     }
 
