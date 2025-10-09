@@ -8,14 +8,14 @@ import system.data.person.Student;
 import system.data.person.Teacher;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class MTeacher {
+
+    List<Student> students;
+
 
 public MTeacher(){
 
@@ -25,6 +25,7 @@ public void menu(BufferedReader br, Teacher teacher){
     System.out.println("Options");
     System.out.println("1. view courses");
     System.out.println("2. select student");
+    System.out.println("3. view students grades");
     Integer i = 0;
      try {
         i = Integer.parseInt(br.readLine());
@@ -67,17 +68,17 @@ public void menu(BufferedReader br, Teacher teacher){
             }
             switch (i2s){
                 case 1:
-                    int gradId, coursId;
+                    int gradeId, courseId;
                     String value;
                     System.out.println("Choose grade ID");
                     try {
-                        gradId = Integer.parseInt(br.readLine());
+                        gradeId = Integer.parseInt(br.readLine());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                     System.out.println("Choose course ID");
                     try {
-                        coursId = Integer.parseInt(br.readLine());
+                        courseId = Integer.parseInt(br.readLine());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -95,17 +96,32 @@ public void menu(BufferedReader br, Teacher teacher){
                         case "F" -> LetterGrade.Rank.F;
                         default -> null;
                     };
-
-                    selectedStudent.addGrade(new LetterGrade(gradId, coursId, rank));
+                    selectedStudent.assignGrade(new LetterGrade(gradeId, courseId, rank));
                 break;
                 default:
             }
+            break;
+        case 3:
+            int nr = 1;
+            List<Course> cc = teacher.getCourseList();
+
+            for(Student s : students){
+                //the students grades
+                List<Grade> sGrades = s.getGrades().stream().filter((g) -> cc.stream().map((c) -> c.getId() == g.getGradeId() ).findAny().get() ).toList();
+                if(!sGrades.isEmpty()) { //pnly print if attending any of the teachers courses
+                    System.out.println("#" +  (nr++) + " " + s.getName() ); //prints number and name
+                    for (Grade g : sGrades){  // print all grades, indented, name of course, course ID  and final grade or "enrolled"
+                        String name = cc.stream().filter((c) -> c.getId() == g.getCourseId()).map(Course::getName).findFirst().get();
+                        System.out.println("\t" + name + "(ID: "+ g.getCourseId()  + ") ** "  + ((g instanceof LetterGrade) ? ((LetterGrade) g).getRank().toString() : "enrolled"));
+                    }
+
+                }
+            }
+        break;
 
     }
 
-
 }
-
 
 }
 

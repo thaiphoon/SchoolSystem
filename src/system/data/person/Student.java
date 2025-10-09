@@ -31,7 +31,6 @@ public class Student extends Person {
             e.printStackTrace();
             grades.add(newgrade);
         }
-
     }
 
     public List<Grade> getGrades() {
