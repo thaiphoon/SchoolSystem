@@ -1,21 +1,18 @@
 package system.fileSystem;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import system.SchoolSystem;
 import system.data.course.Course;
 import system.data.person.Student;
 import system.data.person.Teacher;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.lang.reflect.Type;
-import com.google.gson.reflect.TypeToken;
 
 public class JsonUtil {
 
     public void writeToJson(List<Teacher> teacherList, List<Student> studentList,
-                            List<Course> coursesList, SchoolSystem schoolSystem){
+                            List<Course> coursesList){
         Gson gson = new Gson();
         StringBuilder sb = new StringBuilder();
         sb.append("students@")
@@ -45,21 +42,10 @@ public class JsonUtil {
             System.out.println("File not found");
         }
         String[] tmpdivide = tmp.split(new String("@"));
-        for(int i = 0; i < tmpdivide.length; i++) {
-            System.out.println(tmpdivide[i]);
-        }
-        Type type = new TypeToken<ArrayList<Teacher>>(){}.getType();
-        List<Teacher> teacherList = gson.fromJson(tmpdivide[3], type);
 
-        type = new TypeToken<ArrayList<Student>>(){}.getType();
-        List<Student> studentList = gson.fromJson(tmpdivide[1], type);
-
-        type = new TypeToken<ArrayList<Course>>(){}.getType();
-        List<Course> coursesList = gson.fromJson(tmpdivide[5], type);
+        List<Teacher> teacherList = List.of(gson.fromJson(tmpdivide[3], Teacher[].class));
+        List<Course> coursesList = List.of(gson.fromJson(tmpdivide[5], Course[].class));
+        List<Student> studentList = List.of(gson.fromJson(tmpdivide[1], Student[].class));
         return null;
-
     }
-
-
-
 }
