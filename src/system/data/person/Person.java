@@ -9,4 +9,12 @@ public abstract class Person {
         this.personId = personId;
         this.name = name;
     }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -10,8 +10,9 @@ public class Teacher extends Person{
     private List<Course> courseList;
 
     public Teacher(int personId, String name){
-        courseList = new ArrayList<>();
         super(personId, name);
+        courseList = new ArrayList<>();
+
     }
 
     public void addCourse(Course course){
@@ -19,6 +20,5 @@ public class Teacher extends Person{
     }
 
     public List<Course> getCourseList(){ return this.courseList; }
-
 
 }
