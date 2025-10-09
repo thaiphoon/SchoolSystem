@@ -6,6 +6,7 @@ import system.data.grade.LetterGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.fileSystem.FileSystem;
 import system.fileSystem.JsonUtil;
 import system.menu.Menu;
 
@@ -21,11 +22,13 @@ public class SchoolSystem {
     List<Teacher> teacherList;
     List<Student> studentList;
     List<Course> coursesList;
+    FileSystem fileSystem;
 
     public SchoolSystem(){
         teacherList = new ArrayList<Teacher>();
         studentList = new ArrayList<Student>();
         coursesList = new ArrayList<Course>();
+        this.fileSystem = FileSystem.getInstance();
 
         teacherList.add(new Teacher(1, "Ibrahim Hazem"));
         teacherList.add(new Teacher(2, "Bill Palmstedt"));
@@ -51,11 +54,9 @@ public class SchoolSystem {
 
         studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
         studentList.get(1).addGrade(new LetterGrade(1, 102, "A"));
-
-        JsonUtil jsonUtil = new JsonUtil();
-        jsonUtil.writeToJson(teacherList, studentList, coursesList, this);
-        String[] files = new String[]{"file/student.json", "file/teacher.json", "file/course.json"};
-        jsonUtil.readFromFile(files);
+        fileSystem.addStudents(studentList);
+        fileSystem.addCourses(coursesList);
+        fileSystem.addTeachers(teacherList);
     }
 
     private void run(){
