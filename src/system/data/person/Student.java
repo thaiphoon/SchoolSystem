@@ -4,6 +4,7 @@ import system.data.grade.Grade;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Student extends Person {
 
@@ -25,8 +26,10 @@ public class Student extends Person {
         } catch (NullPointerException e) {
             e.printStackTrace();
             grades.add(newgrade);
+        }catch (NoSuchElementException e) {
+            e.printStackTrace();
+            grades.add(newgrade);
         }
-
 
     }
 

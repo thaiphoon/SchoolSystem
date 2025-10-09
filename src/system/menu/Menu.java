@@ -39,7 +39,7 @@ public class Menu {
                 br.close();
                 System.exit(0);
             case 11:
-                tMenu.menu(br, teacher);
+                tMenu.menu(br, teacher, studentList);
                 break;
         }
     }
