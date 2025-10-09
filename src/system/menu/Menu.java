@@ -5,6 +5,7 @@ import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
 import system.inputHandling.SingleIntegerInput;
+import system.menu.student.MStudent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +19,10 @@ public class Menu {
         Person currentPerson = studentList.get(0);
         System.out.println("======School System======");
         System.out.println("0: Exit System");
-        System.out.println("1: Test Input");
+        System.out.println("1: Show All Available Courses");
+        System.out.println("2: Show My Enrolled Courses");
+        System.out.println("3: Show My Completed Courses");
+        System.out.println("4: Enroll in a course");
         return new SingleIntegerInput().handleInput(br);
     }
 
@@ -26,6 +30,19 @@ public class Menu {
                             List<Course> coursesList) throws IOException, PatternSyntaxException {
         Person currentPerson = studentList.get(0);
         switch (choice) {
+
+            case 1:
+                new MStudent().showAvailableCourses(coursesList, teacherList);
+                break;
+            case 2:
+                new MStudent().showEnrolledCourses(coursesList, (Student) currentPerson);
+                break;
+            case 3:
+                new MStudent().showCompletedCourses(coursesList, (Student) currentPerson);
+                break;
+            case 4:
+                new MStudent().enrollCourse(coursesList, teacherList, (Student) currentPerson, br);
+                break;
             case 0:
                 br.close();
                 System.exit(0);

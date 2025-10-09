@@ -3,6 +3,7 @@ package system;
 import system.data.course.Course;
 import system.data.grade.Grade;
 import system.data.grade.LetterGrade;
+import system.data.grade.PendingGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
@@ -44,7 +45,8 @@ public class SchoolSystem {
         teacherList.get(0).addCourse(coursesList.get(1));
         teacherList.get(1).addCourse(coursesList.get(0));
 
-        studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        studentList.get(0).addGrade(new LetterGrade(2, 101, "A"));
+        studentList.get(0).addGrade(new PendingGrade(1, 102, ""));
         run();
     }
 
