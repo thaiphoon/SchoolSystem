@@ -22,6 +22,7 @@ public class Menu {
         System.out.println("1: Show All Available Courses");
         System.out.println("2: Show My Enrolled Courses");
         System.out.println("3: Show My Completed Courses");
+        System.out.println("4: Enroll in a course");
         return new SingleIntegerInput().handleInput(br);
     }
 
@@ -38,6 +39,9 @@ public class Menu {
                 break;
             case 3:
                 new MStudent().showCompletedCourses(coursesList, (Student) currentPerson);
+                break;
+            case 4:
+                new MStudent().enrollCourse(coursesList, teacherList, (Student) currentPerson, br);
                 break;
             case 0:
                 br.close();
