@@ -58,7 +58,7 @@ break;
                 new MStudent().enrollCourse(coursesList, teacherList, (Student) currentPerson, br);
                 break;
             case 11:
-                tMenu.menu(br, teacher);
+                tMenu.menu(br, teacher, studentList);
                 break;
         }
     }

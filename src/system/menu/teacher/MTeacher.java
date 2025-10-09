@@ -8,20 +8,21 @@ import system.data.person.Student;
 import system.data.person.Teacher;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class MTeacher {
 
-    List<Student> students;
+
 
 
 public MTeacher(){
 
 }
 
-public void menu(BufferedReader br, Teacher teacher){
+public void menu(BufferedReader br, Teacher teacher, List<Student> students) {
     System.out.println("Options");
     System.out.println("1. view courses");
     System.out.println("2. select student");
@@ -41,12 +42,11 @@ public void menu(BufferedReader br, Teacher teacher){
             break;
         case 2:
             // all students in all clsses, no duplicates
-            List<Student> uniqueStudents = new TreeSet<Student>(teacher.getCourseList().stream()
-                    .flatMap(c -> c.getStudents().stream()).toList()).stream().toList();
+            List<Student> uniqueStudents = students;
 
             int nr_2 = 1;
             for(Student st : uniqueStudents){
-                System.out.println("#" + (nr_2++) + st.getName());
+                System.out.println("#" + (nr_2++) +" "+ st.getName());
             }
             int i2 = 0;
             try {
@@ -107,12 +107,20 @@ public void menu(BufferedReader br, Teacher teacher){
 
             for(Student s : students){
                 //the students grades
-                List<Grade> sGrades = s.getGrades().stream().filter((g) -> cc.stream().map((c) -> c.getId() == g.getGradeId() ).findAny().get() ).toList();
+                //List<Grade> sGrades = s.getGrades().stream().filter((g) -> cc.stream().map((c) -> c.getId() == g.getGradeId() ).findAny().get() ).toList();
+                List<Grade> sGrades = s.getGrades();  // temp fix
                 if(!sGrades.isEmpty()) { //pnly print if attending any of the teachers courses
                     System.out.println("#" +  (nr++) + " " + s.getName() ); //prints number and name
                     for (Grade g : sGrades){  // print all grades, indented, name of course, course ID  and final grade or "enrolled"
-                        String name = cc.stream().filter((c) -> c.getId() == g.getCourseId()).map(Course::getName).findFirst().get();
-                        System.out.println("\t" + name + "(ID: "+ g.getCourseId()  + ") ** "  + ((g instanceof LetterGrade) ? ((LetterGrade) g).getRank().toString() : "enrolled"));
+
+
+                        String name = null;
+                        try {
+                            name = cc.stream().filter((c) -> c.getId() == g.getCourseId()).map(Course::getName).findFirst().get();
+                        } catch (Exception e) {
+                            name = "ERROR";
+                        }
+                        System.out.println("\t" + name + " (ID: "+ g.getCourseId()  + ") ** "  + ((g instanceof LetterGrade) ? ((LetterGrade) g).getRank().toString() : "enrolled"));
                     }
 
                 }
