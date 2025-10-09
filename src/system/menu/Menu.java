@@ -10,6 +10,7 @@ import system.menu.teacher.MTeacher;
 import system.inputHandling.SingleIntegerInput;
 import system.menu.teacher.MTeacher;
 import system.inputHandling.SingleIntegerInput;
+import system.menu.teacher.MTeacher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
