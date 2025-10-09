@@ -54,6 +54,12 @@ public class FileSystem {
         jsonUtil.writeToJson(this.teacherList, this.studentList, this.coursesList);
     }
 
+    public void readJson(){
+        readStudentsJson();
+        readTeachersJson();
+        readCoursesJson();
+    }
+
     public void readTeachersJson(){
         this.teacherList = jsonUtil.readTeachersFromFile("file/teacher.json");
     }
