@@ -10,4 +10,6 @@ public interface IStudent {
     void showAvailableCourses(List<Course> courses, List<Teacher> teachers);
     void showEnrolledCourses(List<Course> courses, Student student);
     void showCompletedCourses(List<Course> courses, Student student);
+    void enrollCourse (List<Course> courses, List<Teacher> teachers, Student student);
+    void disEnrollCourse (List<Course> courses, List<Teacher> teachers, Student student);
 }
