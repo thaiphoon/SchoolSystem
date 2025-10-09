@@ -10,6 +10,10 @@ public class LetterGrade extends Grade{
         this.rank = rank;
     }
 
+    public LetterGrade(Rank rank) {
+        this.rank = rank;
+    }
+
     public Rank getRank() {
         return rank;
     }

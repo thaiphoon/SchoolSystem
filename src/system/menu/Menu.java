@@ -9,6 +9,7 @@ import system.menu.teacher.MTeacher;
 import system.inputHandling.SingleIntegerInput;
 import system.inputHandling.SingleIntegerInput;
 import system.menu.student.MStudent;
+import system.menu.teacher.MTeacher;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,6 +58,9 @@ break;
             case 0:
                 br.close();
                 System.exit(0);
+            case 11:
+                tMenu.menu(br, teacher);
+                break;
         }
     }
 }
