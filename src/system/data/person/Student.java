@@ -10,6 +10,7 @@ public class Student extends Person{
     List<Grade> grades = new ArrayList<>();
     public Student(int personId, String name) {
         super(personId, name);
+        this.type = "student";
     }
 
     public void addGrade(Grade grade){
