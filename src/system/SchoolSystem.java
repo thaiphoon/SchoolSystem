@@ -7,6 +7,8 @@ import system.data.grade.PendingGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;
+import system.fileSystem.FileSystem;
+import system.fileSystem.JsonUtil;
 import system.menu.Menu;
 
 import java.io.BufferedReader;
@@ -21,11 +23,13 @@ public class SchoolSystem {
     List<Teacher> teacherList;
     List<Student> studentList;
     List<Course> coursesList;
+    FileSystem fileSystem;
 
     public SchoolSystem(){
         teacherList = new ArrayList<Teacher>();
         studentList = new ArrayList<Student>();
         coursesList = new ArrayList<Course>();
+        this.fileSystem = FileSystem.getInstance();
 
         teacherList.add(new Teacher(1, "Ibrahim Hazem"));
         teacherList.add(new Teacher(2, "Bill Palmstedt"));
@@ -43,10 +47,17 @@ public class SchoolSystem {
         coursesList.add(new Course(105, "Woodshop 101"));
 
         teacherList.get(0).addCourse(coursesList.get(1));
+        teacherList.get(0).addCourse(coursesList.get(2));
+        teacherList.get(0).addCourse(coursesList.get(3));
         teacherList.get(1).addCourse(coursesList.get(0));
+        teacherList.get(1).addCourse(coursesList.get(1));
+        teacherList.get(1).addCourse(coursesList.get(2));
 
-        studentList.get(0).addGrade(new LetterGrade(2, 101, "A"));
-        studentList.get(0).addGrade(new PendingGrade(1, 102, ""));
+        studentList.get(0).addGrade(new LetterGrade(1, 101, "A"));
+        studentList.get(1).addGrade(new LetterGrade(1, 102, "A"));
+        fileSystem.addStudents(studentList);
+        fileSystem.addCourses(coursesList);
+        fileSystem.addTeachers(teacherList);
         run();
     }
 
