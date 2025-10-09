@@ -3,6 +3,7 @@ package system;
 import system.data.course.Course;
 import system.data.grade.Grade;
 import system.data.grade.LetterGrade;
+import system.data.grade.PendingGrade;
 import system.data.person.Person;
 import system.data.person.Student;
 import system.data.person.Teacher;

@@ -1,6 +1,7 @@
 package system.menu.student;
 
 import system.data.course.Course;
+import system.data.grade.PendingGrade;
 import system.data.person.Student;
 import system.data.person.Teacher;
 
@@ -34,7 +35,7 @@ public class MStudent implements IStudent{
     public void showEnrolledCourses(List<Course> courses, Student student) {
         System.out.println("=== Your Enrolled Courses ===");
         student.getGrades().forEach(grade -> {
-            if (grade.getValue().isEmpty()){
+            if (grade instanceof PendingGrade){
                 for(Course course: courses){
                     if (course.getId()== grade.getCourseId()){
                         System.out.printf("Course id: %d  Name: %s %n", course.getId(), course.getName());
@@ -48,7 +49,7 @@ public class MStudent implements IStudent{
     public void showCompletedCourses(List<Course> courses, Student student) {
         System.out.println("=== Your Completed Courses ===");
         student.getGrades().forEach(grade -> {
-            if (!grade.getValue().isEmpty()){
+            if (!(grade instanceof PendingGrade)){
                 for(Course course: courses){
                     if (course.getId()== grade.getCourseId()){
                         System.out.printf("Course id: %d  Name: %s  Grade: %s %n", course.getId(), course.getName(), grade.getValue());
