@@ -1,0 +1,19 @@
+@startuml
+!pragma layout smetana
+title State Diagram - Grade Lifecycle (Extended)
+[*] --> Pending : Student enrolled
+Pending --> Lettered : Teacher assigns grade (A–F)
+Lettered --> Revised : Administrator overrides / correction
+Revised --> [*]
+note right of Pending
+Represents unenclosed course work
+visible in PendingGrade list
+end note
+note right of Lettered
+Grade finalized and visible in transcript
+end note
+note right of Revised
+Only administrators or teachers
+can modify finalized grades
+end note
+@enduml

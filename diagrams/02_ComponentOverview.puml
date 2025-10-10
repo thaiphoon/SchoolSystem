@@ -1,0 +1,58 @@
+@startuml
+!pragma layout smetana
+title Component Overview - Packages & Responsibilities
+package "UI & Menus (system.menu)" {
+  [Menu]
+  package "student" {
+    [MStudent]
+    [IStudent]
+  }
+  package "teacher" {
+    [MTeacher]
+    [ITeacher]
+  }
+  package "admin" {
+    [MAdministrator]
+    [IAdministrator]
+  }
+}
+package "Input Handling (system.inputHandling)" {
+  [InputHandler<T>]
+  [SingleIntegerInput]
+  [NameInput]
+  [PersonIdInput]
+  [CourseNameInput]
+}
+package "Domain (system.data)" {
+  package "person" {
+    [Person]
+    [Student]
+    [Teacher]
+    [Administrator]
+  }
+  package "course" {
+    [Course]
+  }
+  package "grade" {
+    [Grade <<abstract>>]
+    [PendingGrade]
+    [LetterGrade]
+  }
+}
+package "Data (system.fileSystem)" {
+  [FileSystem]
+  [JsonUtil]
+}
+[Menu] --> [MStudent]
+[Menu] --> [MTeacher]
+[Menu] --> [MAdministrator]
+[MStudent] ..> [InputHandler<T>]
+[MTeacher] ..> [InputHandler<T>]
+[Menu]    ..> [SingleIntegerInput]
+[MStudent] --> [Student]
+[MTeacher] --> [Teacher]
+[MStudent] --> [FileSystem]
+[MTeacher] --> [FileSystem]
+[MAdministrator] --> [FileSystem]
+[FileSystem] --> [JsonUtil]
+@enduml

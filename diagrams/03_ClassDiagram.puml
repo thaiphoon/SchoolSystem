@@ -1,0 +1,64 @@
+@startuml
+!pragma layout smetana
+title Class Diagram - Core Model & Persistence
+package system.data.person {
+  class Person {
+    - int personId
+    - String name
+    + int getPersonId()
+    + String getName()
+  }
+  class Student {
+    - java.util.List<system.data.grade.Grade> grades
+    + java.util.List<system.data.grade.Grade> getGrades()
+    + void addGrade(system.data.grade.Grade)
+  }
+  class Teacher
+  class Administrator
+  Person <|-- Student
+  Person <|-- Teacher
+  Person <|-- Administrator
+}
+package system.data.course {
+  class Course {
+    - int id
+    - String name
+    + int getId()
+    + String getName()
+  }
+}
+package system.data.grade {
+  abstract class Grade {
+    - int courseId
+    + int getCourseId()
+  }
+  class PendingGrade
+  class LetterGrade {
+    + enum Rank
+    - Rank rank
+  }
+  Grade <|-- PendingGrade
+  Grade <|-- LetterGrade
+}
+Student "1" --> "0..*" Grade
+Grade  "1" --> "1" Course
+package system.fileSystem {
+  class FileSystem {
+    - static volatile FileSystem instance
+    - java.util.List<system.data.person.Teacher> teacherList
+    - java.util.List<system.data.person.Student> studentList
+    - java.util.List<system.data.course.Course> coursesList
+    - JsonUtil jsonUtil
+    + static FileSystem getInstance()
+    + java.util.List<Teacher> getTeachers()
+    + java.util.List<Student> getStudents()
+    + java.util.List<Course> getCourses()
+  }
+  class JsonUtil {
+    + java.util.List<Teacher> readTeachersFromFile(String)
+    + java.util.List<Student> readStudentsFromFile(String)
+    + java.util.List<Course> readCoursesFromFile(String)
+  }
+  FileSystem --> JsonUtil
+}
+@enduml

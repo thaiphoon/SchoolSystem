@@ -1,0 +1,27 @@
+@startuml
+!pragma layout smetana
+title System Context - SchoolSystem
+actor "Student" as StudentActor
+actor "Teacher" as TeacherActor
+actor "Administrator" as AdminActor
+rectangle "SchoolSystem (Console App)\npackage: system" as App {
+  component "Menu\n(system.menu.Menu)" as Menu
+  component "Student Menu\n(system.menu.student.MStudent)" as MStudent
+  component "Teacher Menu\n(system.menu.teacher.MTeacher)" as MTeacher
+  component "Admin Menu\n(system.menu.admin.MAdministrator)" as MAdmin
+  component "FileSystem (singleton)\n(system.fileSystem.FileSystem)" as FS
+  component "JsonUtil (Gson)\n(system.fileSystem.JsonUtil)" as JU
+  database "JSON files\nfile/student.json\nfile/teacher.json\nfile/course.json" as JSON
+}
+StudentActor --> Menu
+TeacherActor --> Menu
+AdminActor   --> Menu
+Menu --> MStudent
+Menu --> MTeacher
+Menu --> MAdmin
+MStudent --> FS
+MTeacher --> FS
+MAdmin   --> FS
+FS --> JU
+JU --> JSON
+@enduml

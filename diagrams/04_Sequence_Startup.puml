@@ -1,0 +1,18 @@
+@startuml
+!pragma layout smetana
+title Sequence - Startup to Main Menu
+actor User
+participant "system.Main" as Main
+participant "system.SchoolSystem" as SS
+participant "system.fileSystem.FileSystem" as FS
+participant "system.menu.Menu" as Menu
+User -> Main : run
+Main -> SS : new SchoolSystem()
+SS -> FS : FileSystem.getInstance()
+SS -> FS : readTeachersJson()\nreadStudentsJson()\nreadCoursesJson()
+FS --> SS : lists loaded
+SS -> Menu : new Menu()
+SS -> Menu : menuText(BufferedReader, teacherList, studentList, coursesList)
+Menu --> SS : int selection
+SS -> Menu : menuChoices(..., teacherList, studentList, coursesList)
+@enduml

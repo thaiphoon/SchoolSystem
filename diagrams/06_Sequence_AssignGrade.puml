@@ -1,0 +1,21 @@
+@startuml
+!pragma layout smetana
+title Sequence - Teacher Assigns Grade (Letter)
+actor Teacher
+participant "system.menu.Menu" as Menu
+participant "system.menu.teacher.MTeacher" as MTeacher
+participant "system.fileSystem.FileSystem" as FS
+participant "system.data.person.Student" as S
+participant "system.data.course.Course" as C
+participant "system.data.grade.LetterGrade" as LG
+Teacher -> Menu : choose "Assign Grade"
+Menu -> MTeacher : assignGrade(studentId, courseId, rank, br)
+MTeacher -> FS : getStudents()
+FS --> MTeacher : List<Student>
+MTeacher -> FS : getCourses()
+FS --> MTeacher : List<Course>
+MTeacher -> LG : new LetterGrade(courseId, rank)
+MTeacher -> S : addGrade(LG)
+S --> MTeacher : updated grades
+MTeacher --> Menu : show success + updated grades for student
+@enduml

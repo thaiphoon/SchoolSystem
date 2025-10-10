@@ -1,0 +1,16 @@
+@startuml
+!pragma layout smetana
+title Sequence - Student Enroll in Course
+actor Student
+participant "system.menu.Menu" as Menu
+participant "system.menu.student.MStudent" as MStudent
+participant "system.fileSystem.FileSystem" as FS
+participant "system.data.person.Student" as S
+participant "system.data.course.Course" as C
+Student -> Menu : choose "Enroll in a course" (option 4)
+Menu -> MStudent : enrollCourse(..., teacherList, studentList, coursesList, br)
+MStudent -> FS : getCourses()
+FS --> MStudent : java.util.List<Course>
+MStudent -> S : addGrade(new PendingGrade(courseId))
+MStudent --> Student : confirmation / listing
+@enduml

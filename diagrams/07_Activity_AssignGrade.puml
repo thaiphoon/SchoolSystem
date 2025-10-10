@@ -1,0 +1,25 @@
+@startuml
+!pragma layout smetana
+title Activity Diagram - Teacher Assigns Grade
+start
+:Teacher selects "Assign Grade";
+:Prompt for studentId, courseId, letter rank;
+:Load data from FileSystem (students + courses);
+if (Student exists?) then (yes)
+  if (Course exists?) then (yes)
+    :Check if student has PendingGrade for course;
+    if (PendingGrade found?) then (yes)
+      :Create new LetterGrade(courseId, rank);
+      :Replace PendingGrade with LetterGrade;
+      :Show success message;
+    else (no)
+      :Show "No pending grade" message;
+    endif
+  else (no)
+    :Show "Course not found";
+  endif
+else (no)
+  :Show "Student not found";
+endif
+stop
+@enduml
