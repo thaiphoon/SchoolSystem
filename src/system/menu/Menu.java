@@ -18,7 +18,7 @@ public class Menu {
 
     public int menuText(BufferedReader br, List<Teacher> teacherList, List<Student> studentList,
     List<Course> coursesList) throws IOException, PatternSyntaxException {
-        Person currentPerson = studentList.get(0);
+        //Person currentPerson = studentList.get(0);
         System.out.println("======School System======");
         System.out.println("0: Exit System");
         System.out.println("1: Show All Available Courses");
