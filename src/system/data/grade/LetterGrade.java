@@ -7,6 +7,7 @@ public class LetterGrade extends Grade{
     public LetterGrade(int gradeId, int courseId, Rank rank) {
 
         super(gradeId, courseId);
+        this.type = "lettergrade";
         this.rank = rank;
     }
 
