@@ -55,8 +55,9 @@ public void menu(BufferedReader br, Teacher teacher, List<Student> students){
                     break;
                 }
                 for(int j = 0; j < teachersStudents.get(teachersStudents.keySet().toArray()[h]).size();
-                j++){
-                    if(!uniqueStudents.contains(teachersStudents.get(teachersStudents.keySet().toArray()[h]))){
+                    j++){
+                    if(!uniqueStudents.contains(teachersStudents
+                            .get(teachersStudents.keySet().toArray()[h]).get(j))){
                         uniqueStudents.add(teachersStudents.get(teachersStudents.keySet().toArray()[h]).get(j));
                     }
                 }
